@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>filter portfolio</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+         .li{
+
+            display: inline-block;
+            margin-left: 5%;
+            padding-top: 2%;
+        }
+        .li:first-child{
+        color: #32dbc6;
+        font-size: 20px;
+        font-weight: bold;
+        }
+
+
+
+
+        /* work-section */
+
+
+        .btn {
+
+            padding: 15px 30px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border: 1px solid #32dbc6;
+            border-radius: 30px;
+            background-color: #32dbc6;
+            color: #212529;
+
+        }
+
+
+        .btn:hover,
+        .btn:active,
+        .btn:focus {
+
+            background-color: #32dbc6;
+            border: 1px solid #32dbc6;
+            color: #fff;
+        }
+
+
+        .overlay {
+
+            height: 100%;
+            width: 100%;
+            background: rgba(51, 54, 59, .5);
+            position: absolute;
+            color: #fff;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+        }
+
+
+
+        .work div {
+            width: 60%
+        }
+
+        .work-imgs ul li {
+            display: inline;
+        }
+
+        .work-imgs ul li a {
+            border-radius: 20px;
+            padding: 7px 20px;
+        }
+
+        .delete {
+            animation: delete-img .5s ease;
+            display: none
+        }
+
+        .show {
+            animation: show-img .5s ease;
+            display: block
+        }
+
+        /*start animation*/
+
+        @keyframes show-img {
+            0% {
+                transform: scale(0, 0);
+            }
+
+            100% {
+                transform: scale(1, 1)
+            }
+        }
+
+        @keyframes delete-img {
+            0% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                transform: scale(0, 0)
+            }
+        }
+
+
+        .img-sec .image {
+            width: 100%;
+            height: 300px;
+            position: relative;
+
+        }
+
+        .img-sec .image .overlay {
+            padding-top: 120px;
+            color: aliceblue;
+            opacity: 0;
+            transition: all .5s ease
+        }
+
+        .img-sec .image:hover .overlay {
+            opacity: 1
+        }
+
+
+
+        /*    model  */
+
+        #modal {
+            width: 100%;
+            height: 100%;
+
+            position: fixed;
+            top: 100px;
+            left: 0;
+            background-color: rgba(0, 0, 0, .6);
+            display: none
+        }
+
+
+
+        span {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: aliceblue;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        #modal-img {
+            width: 60%;
+            height: 80%;
+            display: block;
+            margin: 30px auto;
+            animation: zoom 1s ease-in-out
+        }
+
+        #caption {
+            font-size: 22px;
+            text-align: center;
+            color: aliceblue;
+            animation: zoom 1s ease-in-out
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(0)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+        .a {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+    .dynamic-list {
+            margin: 20px auto;
+            padding: 0;
+            width: 100%;
+        }
+
+        ol,ol li,.button
+         {
+            display: inline-block;
+            
+            padding: 1em;
+           
+            cursor: pointer;
+            margin: auto;
+            
+
+        }
+        .button{
+            background-color: #32dbc6;
+        }
+
+   
+
+       
+
+      
+        .imge{
+            width: 100px;
+            display: inline-block;
+        }
+    
+        .plus{
+            background-color: #32dbc6;
+display: inline-block;
+padding: 15px 30px;
+            font-size: 12px;
+            border: 1px solid #32dbc6;
+            border-radius: 30px;
+            background-color: #32dbc6;
+            color: #212529;
+
+        }
+        footer{
+            background-color: #212529;
+            color: white;
+            padding: 5px;
+            text-align: center;
+        }
+    
+
+    </style>
+</head>
+
+<body>
+    
+
+
+    <nav>
+        <ul>
+            <li class="li">Home</li>
+            <li class="li">About</li>
+            <li class="li">Our Team</li>
+            <li class="li">Contact</li>
+            <li class="li">News</li>
+        </ul>
+
+
+        </nav>
+
+    <!--                          -->
+
+
+
+
+    <!-- work-->
+
+    <!-- -- Start Our Work -- -->
+    <div class="w-100 text-center work mt-5" id="work">
+        <div class="m-auto">
+            <h2 class="border-bottom w-50 m-auto">Our Work</h2>
+            <p class="lead ">Lorem ipsum dolor sit amet, consectetur .</p>
+        </div>
+
+    </div>
+    <br>
+    <!-- -- Start shuffel -- -->
+    <section class="mt-5 text-center work-imgs ">
+
+        <div class="container-fluid">
+
+            <ul>
+                <li><button class="btn btn-info m-md-2 filter-btn" data-target="all">All</button></li>
+                <li><button class="btn btn-info m-md-2 filter-btn" data-target="web">Web Design</button></li>
+                <li><button class="btn btn-info m-md-2 filter-btn" data-target="mobile">Mobile App</button></li>
+                <li><button class="btn btn-info m-md-2 filter-btn" data-target="copy">Copy Right</button></li>
+            </ul>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="web">
+                    <div class="image">
+                        <img class="img" src="images/06.jpg" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Web</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="web">
+                    <div class="image"><img class="img" src="images/about_1.jpg" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Web</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="mobile">
+                    <div class="image"><img class="img" src="images/mob_1.webp" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Mobile App</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="copy">
+                    <div class="image"><img class="img" src="images/copy_1.jpg" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Copy right</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="web">
+                    <div class="image"><img class="img" src="images/web-1.jpg" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Web</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 img-sec mb-3 filter-img" data-target="mobile">
+                    <div class="image"><img class="img" src="images/mob_3.webp" width="100%" height="100%">
+                        <div class="overlay">
+                            <h4 class="text-center font-weight-bold">Mobile App</h4>
+                            <p class="lead text-center">Code Leader</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--    popup   -->
+
+        <div id="modal">
+            <span id="close">&times;</span>
+            <img id="modal-img" src="">
+            <p id="caption"></p>
+        </div>
+
+
+        <!--    pop    -->
+
+    </section>
+
+
+    <a class="a" href="https://wa.me/+459876"><img src="03.png" width="100px;"></a>
+    <div id="test" class="dynamic-list mt-5 ">
+        <h2 class="text-center">Add a review </h2>
+
+
+        
+
+        <ol id="list">
+            <li><img src="st.png" class="imge"></li>
+            
+            
+        </ol>
+
+        <button class="plus button" onclick="addItem()" id="add">Add new star</button>
+
+    </div>
+    <footer >
+        &copy; copy right for vode ltaeder 2023.
+    </footer>
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+        var list = document.getElementById('list');
+        
+
+
+
+        function addItem() {
+            var li = document.createElement('li');
+            var img = document.createElement('img');
+            img.src="st.png";
+            img.classList.add("imge");
+            
+
+            li.appendChild(img);
+
+           
+
+            list.appendChild(li);
+
+
+        }
+
+
+        // image filter
+        var filterBtn = document.getElementsByClassName("filter-btn"),
+            filterImg = document.getElementsByClassName("filter-img"),
+            i,
+            j;
+
+
+
+        for (i = 0; i < filterBtn.length; i++) {
+
+            filterBtn[i].onclick = function() {
+
+                for (j = 0; j < filterImg.length; j++) {
+
+                    if (filterImg[j].getAttribute('data-target') == this.getAttribute('data-target') || this.getAttribute('data-target') == 'all') {
+
+                        filterImg[j].classList.add('show');
+                        filterImg[j].classList.remove('delete');
+                    } else {
+
+                        filterImg[j].classList.add('delete');
+                        filterImg[j].classList.remove('show');
+                    }
+
+                }
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        //            filterBtn[i].onclick = function() {
+        //                for (j = 0; j < filterImg.length; j++) {
+        //                    if (filterImg[j].getAttribute("data-target") == this.getAttribute("data-target") || this.getAttribute("data-target") == "all") {
+        //                        filterImg[j].classList.add("show");
+        //                        filterImg[j].classList.remove("delete")
+        //                    } else {
+        //                        filterImg[j].classList.add("delete");
+        //                        filterImg[j].classList.remove("show")
+        //                    }
+        //                }
+        //            }
+        //        }
+
+
+        // pop up
+        var img = document.getElementsByClassName("image"),
+            div = document.getElementById("modal"),
+            modalImg = document.getElementById('modal-img'),
+            caption = document.getElementById("caption"),
+            close = document.getElementById("close");
+        var i;
+        for (i = 0; i < img.length; i++) {
+            img[i].onclick = function() {
+                div.style.display = 'block';
+                modalImg.src = this.children[0].src;
+            }
+        }
+
+        close.onclick = function() {
+            "use strict";
+            div.style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>
