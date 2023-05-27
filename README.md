@@ -307,7 +307,7 @@ padding: 15px 30px;
                 <li><button class="btn btn-info m-md-2 filter-btn" data-target="all">All</button></li>
                 <li><button class="btn btn-info m-md-2 filter-btn" data-target="web">Web Design</button></li>
                 <li><button class="btn btn-info m-md-2 filter-btn" data-target="mobile">Mobile App</button></li>
-                <li><button class="btn btn-info m-md-2 filter-btn" data-target="copy">Copy Right</button></li>
+               
             </ul>
             <div class="row">
 
@@ -379,7 +379,7 @@ padding: 15px 30px;
     </section>
 
 
-    <a class="a" href="https://wa.me/+459876"><img src="03.png" width="100px;"></a>
+  <a class="a" href="https://wa.me/+459876" style="width:8%;"><img src="03.png" width="100%;"></a>
     <div id="test" class="dynamic-list mt-5 ">
         <h2 class="text-center">Add a review </h2>
 
